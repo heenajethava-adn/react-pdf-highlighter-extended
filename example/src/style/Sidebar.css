@@ -44,6 +44,8 @@
     text-align: right;
     font-size: 0.8rem;
     color: #777;
+    right: 0;
+     
 }
 
 .highlight__image__container {
@@ -86,7 +88,7 @@ blockquote:after {
 }
 
 /* Add these styles for the buttons */
-.sidebar__toggle,
+.sidebar__save,
 .sidebar__reset {
     display: inline-block;
     padding: 0.5rem 1rem;
@@ -109,7 +111,7 @@ blockquote:after {
     background-color: #f44336;
 }
 
-.sidebar__toggle:hover {
+.sidebar__save:hover {
     background-color: #1565c0;
     border-color: #1565c0;
 }

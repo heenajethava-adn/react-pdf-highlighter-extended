@@ -6,7 +6,7 @@ import { CommentedHighlight } from "./types";
 interface SidebarProps {
   highlights: Array<CommentedHighlight>;
   resetHighlights: () => void;
-  toggleDocument: () => void;
+  saveHighlights: () => void;
 }
 
 const updateHash = (highlight: Highlight) => {
@@ -17,29 +17,40 @@ declare const APP_VERSION: string;
 
 const Sidebar = ({
   highlights,
-  toggleDocument,
-  resetHighlights,
-}: SidebarProps) => {
+  saveHighlights,
+  resetHighlights}: SidebarProps) => {
+
   return (
-    <div className="sidebar" style={{ width: "25vw", maxWidth: "500px" }}>
+    <div className="sidebar" style={{ width: "20vw", maxWidth: "500px" }}>
       {/* Description section */}
       <div className="description" style={{ padding: "1rem" }}>
-        <h2 style={{ marginBottom: "1rem" }}>
-          react-pdf-highlighter-extended {APP_VERSION}
+        <div className="display:flex">
+        <a href="http://localhost:3000/">
+        <h4 style={{ marginBottom: "0" }}>
+         Back to Home
+        </h4>
+        </a>
+        
+        </div>
+        <h2 style={{ marginBottom: "0" }}>
+         Menuatta POC
         </h2>
+        
 
         <p style={{ fontSize: "0.7rem" }}>
-          <a href="https://github.com/DanielArnould/react-pdf-highlighter-extended">
-            Open in GitHub
-          </a>
-        </p>
-
-        <p>
-          <small>
-            To create an area highlight hold ⌥ Option key (Alt), then click and
-            drag.
-          </small>
-        </p>
+         Description
+        </p>  
+    
+         {highlights && highlights.length > 0 && (
+        <div style={{ paddingTop: "0.5rem", display:'flex', gap:'1rem' }}>
+          <button onClick={resetHighlights} className="sidebar__reset">
+            Reset highlights
+          </button>
+          <button onClick={saveHighlights} className="sidebar__save">
+            Save highlights
+          </button>
+        </div>
+      )}
       </div>
 
       {/* Highlights list */}
@@ -78,27 +89,32 @@ const Sidebar = ({
               </div>
 
               {/* Highlight page number */}
-              <div className="highlight__location">
-                Page {highlight.position.boundingRect.pageNumber}
-              </div>
+           
+                {/* <div className="">
+                  Edit  
+                </div>
+                <div className="">
+                  Delete  
+                </div> */}
+                <div className="highlight__location">
+                  Page {highlight.position.boundingRect.pageNumber}
+                </div>
+            
             </li>
           ))}
         </ul>
       )}
 
-      <div style={{ padding: "0.5rem" }}>
-        <button onClick={toggleDocument} className="sidebar__toggle">
-          Toggle PDF document
-        </button>
-      </div>
-
-      {highlights && highlights.length > 0 && (
-        <div style={{ padding: "0.5rem" }}>
+      {/* {highlights && highlights.length > 0 && (
+        <div style={{ padding: "0.5rem", display:'flex', gap:'1rem' }}>
           <button onClick={resetHighlights} className="sidebar__reset">
             Reset highlights
           </button>
+          <button onClick={saveHighlights} className="sidebar__save">
+            Save highlights
+          </button>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

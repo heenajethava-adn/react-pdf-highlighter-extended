@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
 import "./style/Toolbar.css";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 interface ToolbarProps {
   setPdfScaleValue: (value: number) => void;
 }
@@ -33,12 +34,22 @@ const Toolbar = ({ setPdfScaleValue }: ToolbarProps) => {
     }
   };
 
+  const handleDownload = () => {
+  
+};
+
+
   return (
     <div className="Toolbar">
       <div className="ZoomControls">
         <button onClick={zoomIn}>+</button>
         <button onClick={zoomOut}>-</button>
         {zoom ? `${(zoom * 100).toFixed(0)}%` : "Auto"}
+      </div>
+      <div className="DownloadControls">
+        <button onClick={handleDownload}>
+          <FontAwesomeIcon icon={faDownload} /> 
+        </button>
       </div>
     </div>
   );

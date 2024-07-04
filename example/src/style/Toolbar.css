@@ -13,12 +13,22 @@
     align-items: center;
 }
 
-.ZoomControls button {
+.ZoomControls button{
     background: none; /* Remove background */
     color: #f5f5f5;
     border: none; /* Remove border */
     cursor: pointer;
     font-size: 24px;
+    padding: 2px; 
+    margin-right: 8px;
+    transition: color 0.3s, transform 0.2s; 
+}
+.DownloadControls button{
+    background: none; /* Remove background */
+    color: #f5f5f5;
+    border: none; /* Remove border */
+    cursor: pointer;
+    font-size: 20px;
     padding: 2px; 
     margin-right: 8px;
     transition: color 0.3s, transform 0.2s; 

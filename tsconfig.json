@@ -23,5 +23,6 @@
     "plugin": ["typedoc-theme-category-nav"],
     "theme": "navigation"
   },
-  "include": ["./src"]
+  "include": [ "src/**/*.ts",
+    "src/**/*.tsx", "src/**/*.jsx"]
 }
