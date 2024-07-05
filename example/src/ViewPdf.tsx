@@ -29,7 +29,7 @@ const ViewPdf = () => {
   const [highlights, setHighlights] = useState<Array<CommentedHighlight>>(
     TEST_HIGHLIGHTS[pdf_url] ?? [],
   );
-  const currentPdfIndexRef = useRef(0);
+
   const [contextMenu, setContextMenu] = useState<ContextMenuProps | null>(null);
   const [pdfScaleValue, setPdfScaleValue] = useState<number | undefined>(
     undefined,
@@ -37,17 +37,6 @@ const ViewPdf = () => {
 
   // Refs for PdfHighlighter utilities
   const highlighterUtilsRef = useRef<PdfHighlighterUtils>();
-
-  const toggleDocument = () => {
-    const urls = [pdf_url];
-    currentPdfIndexRef.current = (currentPdfIndexRef.current + 1) % urls.length;
-    setUrl(urls[currentPdfIndexRef.current]);
-    setHighlights(TEST_HIGHLIGHTS[urls[currentPdfIndexRef.current]] ?? []);
-  };
-
-
-  // console.log(highlights)
-  // console.log(JSON.stringify(highlights))
  
   // Click listeners for context menu
   useEffect(() => {

@@ -15,10 +15,7 @@ const updateHash = (highlight: Highlight) => {
 
 declare const APP_VERSION: string;
 
-const Sidebar = ({
-  highlights,
-  saveHighlights,
-  resetHighlights}: SidebarProps) => {
+const Sidebar = ({highlights,saveHighlights,resetHighlights}: SidebarProps) => {
 
   return (
     <div className="sidebar" style={{ width: "20vw", maxWidth: "500px" }}>
@@ -33,7 +30,7 @@ const Sidebar = ({
         
         </div>
         <h2 style={{ marginBottom: "0" }}>
-         Menuatta POC
+         Menuetta POC
         </h2>
         
 
@@ -104,17 +101,6 @@ const Sidebar = ({
           ))}
         </ul>
       )}
-
-      {/* {highlights && highlights.length > 0 && (
-        <div style={{ padding: "0.5rem", display:'flex', gap:'1rem' }}>
-          <button onClick={resetHighlights} className="sidebar__reset">
-            Reset highlights
-          </button>
-          <button onClick={saveHighlights} className="sidebar__save">
-            Save highlights
-          </button>
-        </div>
-      )} */}
     </div>
   );
 };

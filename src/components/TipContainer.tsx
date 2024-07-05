@@ -95,6 +95,7 @@ export const TipContainer = ({
         left: clampedLeft,
         height: "max-content",
         width: "max-content",
+        wordBreak: "break-word"
       }}
       ref={containerRef}
     >
