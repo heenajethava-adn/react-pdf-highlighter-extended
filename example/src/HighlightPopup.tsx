@@ -9,14 +9,23 @@ import { CommentedHighlight } from "./types";
 
 interface HighlightPopupProps {
   highlight: ViewportHighlight<CommentedHighlight>;
+  editComment: (id: string) => void;
+  deleteComment: (id: string) => void;
 }
 
-const HighlightPopup = ({ highlight }: HighlightPopupProps) => {
+const HighlightPopup = ({ highlight, editComment, deleteComment }: HighlightPopupProps) => {
+   const handleEdit = () => {
+    editComment(highlight.id);
+  };
+
+  const handleDelete = () => {
+    deleteComment(highlight.id);
+  };
   return highlight.comment ? (
     <div className="Highlight__popup" >
-      <div style={{textAlign:"right"}}>
-          <FontAwesomeIcon icon={faEdit} style={{ cursor: 'pointer' }}   />
-          <FontAwesomeIcon icon={faTrashAlt} style={{ cursor: 'pointer', marginLeft: '1rem' }}   />
+      <div style={{textAlign:"right", marginBottom:"0.5rem"}}>
+          <FontAwesomeIcon icon={faEdit} style={{ cursor: 'pointer' }} onClick={handleEdit}  />
+          <FontAwesomeIcon icon={faTrashAlt} style={{ cursor: 'pointer', marginLeft: '1rem' }} onClick={handleDelete}  />
         </div>
       <div>
       {highlight.comment}

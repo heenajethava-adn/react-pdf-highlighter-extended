@@ -5,7 +5,7 @@ import ExpandableTip from "./ExpandableTip";
 import HighlightContainer from "./HighlightContainer";
 import Sidebar from "./Sidebar";
 import Toolbar from "./Toolbar";
-import {GhostHighlight, Highlight, PdfHighlighter, PdfHighlighterUtils, PdfLoader, Tip, ViewportHighlight} from "./react-pdf-highlighter-extended";
+import {GhostHighlight, PdfHighlighter, PdfHighlighterUtils, PdfLoader, Tip, ViewportHighlight} from "./react-pdf-highlighter-extended";
 import "./style/App.css";
 import { testHighlights as _testHighlights } from "./test-highlights";
 import { CommentedHighlight } from "./types";
@@ -62,8 +62,8 @@ const ViewPdf = () => {
     setContextMenu({
       xPos: event.clientX,
       yPos: event.clientY,
-      deleteHighlight: () => deleteHighlight(highlight),
-      editComment: () => editComment(highlight),
+      deleteHighlight: () => deleteComment(highlight.id, highlight),
+      editComment: () => editComment(highlight.id, highlight),
     });
   };
 
@@ -72,10 +72,6 @@ const ViewPdf = () => {
     setHighlights([{ ...highlight, comment, id: getNextId() }, ...highlights]);
   };
 
-  const deleteHighlight = (highlight: ViewportHighlight | Highlight) => {
-    console.log("Deleting highlight", highlight);
-    setHighlights(highlights.filter((h) => h.id != highlight.id));
-  };
 
   const editHighlight = (
     idToUpdate: string,
@@ -140,12 +136,8 @@ useEffect(() => {
   fetchData();
 }, []);
 
-  const getHighlightById = (id: string) => {
-    return highlights.find((highlight) => highlight.id === id);
-  };
 
-  // Open comment tip and update highlight with new user input
-  const editComment = (highlight: ViewportHighlight<CommentedHighlight>) => {
+const editComment = (id: string, highlight: ViewportHighlight<CommentedHighlight>) => {
     if (!highlighterUtilsRef.current) return;
 
     const editCommentTip: Tip = {
@@ -153,18 +145,66 @@ useEffect(() => {
       content: (
         <CommentForm
           placeHolder={highlight.comment}
+          value={highlight.comment}
           onSubmit={(input) => {
             editHighlight(highlight.id, { comment: input });
             highlighterUtilsRef.current!.setTip(null);
             highlighterUtilsRef.current!.toggleEditInProgress(false);
           }}
-        ></CommentForm>
+        />
       ),
     };
 
     highlighterUtilsRef.current.setTip(editCommentTip);
     highlighterUtilsRef.current.toggleEditInProgress(true);
   };
+
+const deleteComment = async (id: string, highlight: ViewportHighlight<CommentedHighlight>) => {
+    const confirmed = window.confirm("Are you sure you want to delete this comment?");
+
+    if (confirmed) {
+        setHighlights(highlights.filter((h) => h.id !== highlight.id));
+    } else {
+        console.log("Deletion cancelled by user");
+    }
+};
+
+
+
+// const deleteComment = async (id: string, highlight: ViewportHighlight<CommentedHighlight>) => {
+//   console.log("Deleting comment for highlight", highlight);
+
+//   // Update state locally by filtering out the deleted highlight
+//   setHighlights(highlights.filter(h => h.id !== id));
+
+//   try {
+//     // Send delete request to your backend API
+//     const response = await fetch(`http://localhost:8000/${id}`, {
+//       method: 'DELETE',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({ id }),  // Send the ID of the highlight to delete
+//     });
+
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! Status: ${response.status}`);
+//     }
+
+//     console.log('Comment and highlight deleted successfully!');
+//     alert('Comment and highlight deleted successfully!');
+
+//   } catch (error) {
+//     console.error('Error deleting comment and highlight:', error);
+//   }
+// };
+
+
+  const getHighlightById = (id: string) => {
+    return highlights.find((highlight) => highlight.id === id);
+  };
+
+
 
   // Scroll to highlight based on hash in the URL
   const scrollToHighlightFromHash = () => {
@@ -185,7 +225,7 @@ useEffect(() => {
   }, [scrollToHighlightFromHash]);
 
   return (
-    <div className="App" style={{ display: "flex", height: "100vh" }}>
+    <div className="App" style={{ display: "flex", height: "100vh" , flexDirection: "row-reverse"}}>
       <Sidebar
         highlights={highlights}
         resetHighlights={resetHighlights}
@@ -198,6 +238,8 @@ useEffect(() => {
           overflow: "hidden",
           position: "relative",
           flexGrow: 1,
+          margin: "1rem",
+          borderRadius: "0.6rem"
         }}
       >
         <Toolbar setPdfScaleValue={(value) => setPdfScaleValue(value)} />
@@ -219,6 +261,8 @@ useEffect(() => {
             >
               <HighlightContainer
                 editHighlight={editHighlight}
+                editComment={editComment}
+                deleteComment={deleteComment}
                 onContextMenu={handleContextMenu}
               />
             </PdfHighlighter>

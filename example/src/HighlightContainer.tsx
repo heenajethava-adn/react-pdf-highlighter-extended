@@ -12,19 +12,17 @@ import {
 import { CommentedHighlight } from "./types";
 
 interface HighlightContainerProps {
-  editHighlight: (
-    idToUpdate: string,
-    edit: Partial<CommentedHighlight>,
-  ) => void;
-  onContextMenu?: (
-    event: MouseEvent<HTMLDivElement>,
-    highlight: ViewportHighlight,
-  ) => void;
+  editComment: (idToUpdate: string, highlight: ViewportHighlight<CommentedHighlight>) => void;
+  deleteComment: (id: string, highlight: ViewportHighlight<CommentedHighlight>) => void;
+  editHighlight: (idToUpdate: string,edit: Partial<CommentedHighlight>,) => void;
+  onContextMenu?: (event: MouseEvent<HTMLDivElement>,highlight: ViewportHighlight,) => void;
 }
 
 const HighlightContainer = ({
   editHighlight,
   onContextMenu,
+  editComment,
+  deleteComment,
 }: HighlightContainerProps) => {
   const {
     highlight,
@@ -73,10 +71,14 @@ const HighlightContainer = ({
       onEditStart={() => toggleEditInProgress(true)}
     />
   );
-
+ 
   const highlightTip: Tip = {
     position: highlight.position,
-    content: <HighlightPopup highlight={highlight} />,
+    content: <HighlightPopup 
+    highlight={highlight} 
+    editComment={(id) => editComment(id, highlight)}
+    deleteComment={(id) => deleteComment(id, highlight)}
+    />
   };
 
   return (

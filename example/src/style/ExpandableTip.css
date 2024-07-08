@@ -23,6 +23,16 @@
   height: 70px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  /* padding-left: 0.5rem; */
+}
+
+.Tip__card textarea::placeholder {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.Tip__card textarea:focus{
+  outline: none;
+  border: 1px solid #686565;
 }
 
 .Tip__card input[type="submit"] {

@@ -32,6 +32,7 @@ const ExpandableTip = ({ addHighlight }: ExpandableTipProps) => {
         <button
           className="Tip__compact"
           onClick={() => {
+            
             setCompact(false);
             selectionRef.current = getCurrentSelection();
             selectionRef.current!.makeGhostHighlight();
@@ -41,7 +42,7 @@ const ExpandableTip = ({ addHighlight }: ExpandableTipProps) => {
         </button>
       ) : (
         <CommentForm
-          placeHolder="Your comment..."
+          placeHolder="Enter your Comment"
           onSubmit={(input) => {
             addHighlight(
               {

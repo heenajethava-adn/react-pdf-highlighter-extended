@@ -39,12 +39,9 @@ const Sidebar = ({highlights,saveHighlights,resetHighlights}: SidebarProps) => {
         </p>  
     
          {highlights && highlights.length > 0 && (
-        <div style={{ paddingTop: "0.5rem", display:'flex', gap:'1rem' }}>
-          <button onClick={resetHighlights} className="sidebar__reset">
-            Reset highlights
-          </button>
+        <div style={{ paddingTop: "0.5rem" }}>
           <button onClick={saveHighlights} className="sidebar__save">
-            Save highlights
+            Save Changes
           </button>
         </div>
       )}
@@ -63,12 +60,13 @@ const Sidebar = ({highlights,saveHighlights,resetHighlights}: SidebarProps) => {
             >
               <div>
                 {/* Highlight comment and text */}
-                <strong>{highlight.comment}</strong>
+               
                 {highlight.content.text && (
                   <blockquote style={{ marginTop: "0.5rem" }}>
                     {`${highlight.content.text.slice(0, 90).trim()}…`}
                   </blockquote>
                 )}
+                 
 
                 {/* Highlight image */}
                 {highlight.content.image && (
@@ -83,18 +81,17 @@ const Sidebar = ({highlights,saveHighlights,resetHighlights}: SidebarProps) => {
                     />
                   </div>
                 )}
+              
               </div>
-
-              {/* Highlight page number */}
-           
-                {/* <div className="">
-                  Edit  
-                </div>
-                <div className="">
-                  Delete  
-                </div> */}
-                <div className="highlight__location">
-                  Page {highlight.position.boundingRect.pageNumber}
+              
+                <div style={{display:"flex", marginTop:"1rem", justifyContent:"space-between"}}>
+                  <div className="" >
+                    <strong>{highlight.comment}</strong>
+                  </div>
+              
+                  <div className="highlight__location" >
+                     Page {highlight.position.boundingRect.pageNumber}
+                  </div>
                 </div>
             
             </li>
