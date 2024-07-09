@@ -2,11 +2,12 @@ import React from "react";
 import type { Highlight } from "./react-pdf-highlighter-extended";
 import "./style/Sidebar.css";
 import { CommentedHighlight } from "./types";
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface SidebarProps {
   highlights: Array<CommentedHighlight>;
   resetHighlights: () => void;
-  saveHighlights: () => void;
 }
 
 const updateHash = (highlight: Highlight) => {
@@ -15,36 +16,29 @@ const updateHash = (highlight: Highlight) => {
 
 declare const APP_VERSION: string;
 
-const Sidebar = ({highlights,saveHighlights,resetHighlights}: SidebarProps) => {
+const Sidebar = ({highlights,resetHighlights}: SidebarProps) => {
 
   return (
-    <div className="sidebar" style={{ width: "20vw", maxWidth: "500px" }}>
+    <div className="sidebar" style={{ width: "20vw", maxWidth: "500px", marginRight:"1rem" }}>
       {/* Description section */}
       <div className="description" style={{ padding: "1rem" }}>
-        <div className="display:flex">
-        <a href="http://localhost:3000/">
-        <h4 style={{ marginBottom: "0" }}>
-         Back to Home
-        </h4>
-        </a>
-        
+       
+        <div style={{display:"flex", justifyContent:"center", alignItems:"center", gap:"0.5rem", fontFamily:"'Aclonica', sans-serif"}}>
+          <a href="http://localhost:3000/" style={{margin: "0px", color:"#114a6d"}}>
+            <FontAwesomeIcon icon={faHome} style={{ cursor: 'pointer' }}   />
+          </a>
+          <h3 className="comments" style={{ margin: "0px" , textAlign:"center", color:"#114a6d" }}>
+          Comments
+          </h3>
         </div>
-        <h2 style={{ marginBottom: "0" }}>
-         Menuetta POC
-        </h2>
-        
-
-        <p style={{ fontSize: "0.7rem" }}>
-         Description
-        </p>  
-    
-         {highlights && highlights.length > 0 && (
+      
+         {/* {highlights && highlights.length > 0 && (
         <div style={{ paddingTop: "0.5rem" }}>
-          <button onClick={saveHighlights} className="sidebar__save">
+          <button className="sidebar__save">
             Save Changes
           </button>
         </div>
-      )}
+      )} */}
       </div>
 
       {/* Highlights list */}
@@ -84,7 +78,7 @@ const Sidebar = ({highlights,saveHighlights,resetHighlights}: SidebarProps) => {
               
               </div>
               
-                <div style={{display:"flex", marginTop:"1rem", justifyContent:"space-between"}}>
+                <div style={{display:"flex", marginTop:"1rem", justifyContent:"space-between", flexDirection:"column"}}>
                   <div className="" >
                     <strong>{highlight.comment}</strong>
                   </div>

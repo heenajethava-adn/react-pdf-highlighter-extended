@@ -38,11 +38,11 @@ const ExpandableTip = ({ addHighlight }: ExpandableTipProps) => {
             selectionRef.current!.makeGhostHighlight();
           }}
         >
-          Add highlight
+          Add Comment
         </button>
       ) : (
         <CommentForm
-          placeHolder="Enter your Comment"
+          placeHolder="Enter Comment"
           onSubmit={(input) => {
             addHighlight(
               {

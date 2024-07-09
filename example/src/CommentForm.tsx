@@ -29,8 +29,8 @@ const CommentForm = ({ onSubmit, placeHolder,value }: CommentFormProps) => {
         />
       </div>
       <div style={{display:"flex", gap:"0.5rem", marginTop:"1rem"}}>
-        <button type="submit" value="OK" className="ok-btn">OK</button>
-        <button className="cancel-btn">Cancel</button>
+        <button type="submit" className="ok-btn">Save Changes</button>
+        {/* <button className="cancel-btn">Cancel</button> */}
         {/* <input  /> */}
       </div>
     </form>

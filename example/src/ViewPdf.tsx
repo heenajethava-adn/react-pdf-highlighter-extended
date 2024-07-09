@@ -26,6 +26,8 @@ const ViewPdf = () => {
   const { id } = useParams();  
   const pdf_url = ""
   const [url, setUrl] = useState(pdf_url);
+  const [is_new,setNew] = useState(false);
+  const [is_del,setDel] = useState(false);
   const [highlights, setHighlights] = useState<Array<CommentedHighlight>>(
     TEST_HIGHLIGHTS[pdf_url] ?? [],
   );
@@ -68,22 +70,31 @@ const ViewPdf = () => {
   };
 
   const addHighlight = (highlight: GhostHighlight, comment: string) => {
-    console.log("Saving highlight", highlight);
+    // console.log("Saving highlight", highlight);
     setHighlights([{ ...highlight, comment, id: getNextId() }, ...highlights]);
+    setNew(true);
   };
+
+  useEffect(() => {
+    if (is_new || is_del){
+      saveHighlights();
+    }
+  },[is_new,is_del])
 
 
   const editHighlight = (
     idToUpdate: string,
     edit: Partial<CommentedHighlight>,
   ) => {
-    console.log(`Editing highlight ${idToUpdate} with `, edit);
+    // console.log(`Editing highlight ${idToUpdate} with `, edit);
     setHighlights(
       highlights.map((highlight) =>
-        highlight.id === idToUpdate ? { ...highlight, ...edit } : highlight,
-      ),
-    );
-  };
+        highlight.id === idToUpdate ? { ...highlight, ...edit } : highlight,),);
+      
+  };  
+
+ 
+
 
   const resetHighlights = () => {
     setHighlights([]);
@@ -103,8 +114,17 @@ const saveHighlights = async () => {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
 
-    console.log('Highlights saved successfully!');
-    alert('Highlights saved successfully!')
+    // console.log('Highlights saved successfully!');
+    if (is_new){
+      alert('Highlights saved successfully!');
+      setNew(false);
+    }
+    else if (is_del) {
+      alert('Highlights deleted successfully!')
+      setDel(false);
+    }
+    
+    
 
   } catch (error) {
     console.error('Error saving highlights:', error);
@@ -147,6 +167,7 @@ const editComment = (id: string, highlight: ViewportHighlight<CommentedHighlight
           placeHolder={highlight.comment}
           value={highlight.comment}
           onSubmit={(input) => {
+            setNew(true);
             editHighlight(highlight.id, { comment: input });
             highlighterUtilsRef.current!.setTip(null);
             highlighterUtilsRef.current!.toggleEditInProgress(false);
@@ -164,6 +185,7 @@ const deleteComment = async (id: string, highlight: ViewportHighlight<CommentedH
 
     if (confirmed) {
         setHighlights(highlights.filter((h) => h.id !== highlight.id));
+        setDel(true);
     } else {
         console.log("Deletion cancelled by user");
     }
@@ -229,7 +251,6 @@ const deleteComment = async (id: string, highlight: ViewportHighlight<CommentedH
       <Sidebar
         highlights={highlights}
         resetHighlights={resetHighlights}
-        saveHighlights={saveHighlights}
       />
       <div
         style={{

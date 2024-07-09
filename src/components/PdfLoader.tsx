@@ -7,7 +7,7 @@ import {
   OnProgressParameters,
   TypedArray,
 } from "pdfjs-dist/types/src/display/api";
-import { debug } from "console";
+// import { debug } from "console";
 
 const DEFAULT_BEFORE_LOAD = (progress: OnProgressParameters) => (
   <div style={{ color: "black" }}>
