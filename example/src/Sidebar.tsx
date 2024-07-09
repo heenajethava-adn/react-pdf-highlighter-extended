@@ -19,7 +19,8 @@ declare const APP_VERSION: string;
 const Sidebar = ({highlights,resetHighlights}: SidebarProps) => {
 
   return (
-    <div className="sidebar" style={{ width: "20vw", maxWidth: "500px", marginRight:"1rem" }}>
+    <>
+      <div className="sidebar" style={{ width: "20vw", maxWidth: "500px", marginRight:"1rem" }}>
       {/* Description section */}
       <div className="description" style={{ padding: "1rem" }}>
        
@@ -28,7 +29,7 @@ const Sidebar = ({highlights,resetHighlights}: SidebarProps) => {
             <FontAwesomeIcon icon={faHome} style={{ cursor: 'pointer' }}   />
           </a>
           <h3 className="comments" style={{ margin: "0px" , textAlign:"center", color:"#114a6d" }}>
-          Comments
+           | Comments
           </h3>
         </div>
       
@@ -79,7 +80,8 @@ const Sidebar = ({highlights,resetHighlights}: SidebarProps) => {
               </div>
               
                 <div style={{display:"flex", marginTop:"1rem", justifyContent:"space-between", flexDirection:"column"}}>
-                  <div className="" >
+                  <div className="">
+                    <p className="valuable-com">Your valuable comments are displayed below.</p>
                     <strong>{highlight.comment}</strong>
                   </div>
               
@@ -93,6 +95,8 @@ const Sidebar = ({highlights,resetHighlights}: SidebarProps) => {
         </ul>
       )}
     </div>
+    </>
+  
   );
 };
 

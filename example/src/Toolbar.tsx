@@ -37,12 +37,9 @@ const Toolbar = ({ setPdfScaleValue }: ToolbarProps) => {
   return (
     <div className="Toolbar">
       <div className="ZoomControls">
-        <button onClick={zoomIn}>+</button>
         <button onClick={zoomOut}>-</button>
+        <button onClick={zoomIn}>+</button>
         {zoom ? `${(zoom * 100).toFixed(0)}%` : "Auto"}
-      </div>
-      <div className="ZoomControls">
-        <button onClick={zoomIn}></button>
       </div>
     </div>
   );

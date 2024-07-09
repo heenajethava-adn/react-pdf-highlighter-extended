@@ -33,7 +33,15 @@ const HighlightPopup = ({ highlight, editComment, deleteComment }: HighlightPopu
        
     </div>
   ) : (
-    <div className="Highlight__popup">Comment has no Text</div>
+    <div className="Highlight__popup">
+      <div style={{textAlign:"right", marginBottom:"0.5rem"}}>
+        <FontAwesomeIcon icon={faEdit} style={{ cursor: 'pointer' }} onClick={handleEdit}  />
+        <FontAwesomeIcon icon={faTrashAlt} style={{ cursor: 'pointer', marginLeft: '1rem' }} onClick={handleDelete}  />
+      </div>
+      <div>
+        Comment has no Text
+      </div>
+    </div>
   );
 };
 
