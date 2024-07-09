@@ -8,6 +8,7 @@ import { PDFViewer } from "pdfjs-dist/types/web/pdf_viewer";
  * @category Context
  */
 export type PdfHighlighterUtils = {
+  [x: string]: any;
   /**
    * Checks whether a selection is progress, a ghost highlight, or an edit.
    *

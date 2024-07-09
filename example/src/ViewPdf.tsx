@@ -247,14 +247,14 @@ const deleteComment = async (id: string, highlight: ViewportHighlight<CommentedH
   }, [scrollToHighlightFromHash]);
 
   return (
-    <div className="App" style={{ display: "flex", height: "850px" , flexDirection: "row-reverse"}}>
+    <div className="App" style={{ display: "flex", height: "700px" , flexDirection: "row-reverse"}}>
       <Sidebar
         highlights={highlights}
         resetHighlights={resetHighlights}
       />
       <div
         style={{
-          height: "850px",
+          height: "700px",
           width: "75vw",
           overflow: "hidden",
           position: "relative",

@@ -114,6 +114,8 @@ export const PdfLoader = ({
         if (error.message != "Worker was destroyed") {
           setError(error);
           onError(error);
+          // Reload the page on PDF load error
+          window.location.reload();
         }
       })
       .finally(() => {
