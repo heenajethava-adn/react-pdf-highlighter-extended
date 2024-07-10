@@ -13,7 +13,7 @@
     align-items: center;
 }
 
-.ZoomControls button{
+.ZoomControls button, .thumnailControls button{
     background: #3B3B3B;
     cursor: pointer;
     font-size: 1.5rem;
@@ -25,4 +25,5 @@
     color: #FFFFFF;
     margin: 0.5rem;
 }
+
  

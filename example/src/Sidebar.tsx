@@ -2,7 +2,7 @@ import React from "react";
 import type { Highlight } from "./react-pdf-highlighter-extended";
 import "./style/Sidebar.css";
 import { CommentedHighlight } from "./types";
-import { faHome } from '@fortawesome/free-solid-svg-icons';
+import {  faCommentAlt, faHome } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface SidebarProps {
@@ -82,7 +82,11 @@ const Sidebar = ({highlights,resetHighlights}: SidebarProps) => {
                 <div style={{display:"flex", marginTop:"1rem", justifyContent:"space-between", flexDirection:"column"}}>
                   <div className="">
                     <p className="valuable-com">Your valuable comments are displayed below.</p>
-                    <strong>{highlight.comment}</strong>
+                    
+                    <div>
+                        <FontAwesomeIcon icon={faCommentAlt} style={{ marginRight: '0.4rem' , fontSize:"0.9rem" , color:"rgb(17, 74, 109)"}}   />
+                      <strong>{highlight.comment}</strong>
+                    </div>
                   </div>
               
                   <div className="highlight__location" >

@@ -193,33 +193,7 @@ const deleteComment = async (id: string, highlight: ViewportHighlight<CommentedH
 
 
 
-// const deleteComment = async (id: string, highlight: ViewportHighlight<CommentedHighlight>) => {
-//   console.log("Deleting comment for highlight", highlight);
-
-//   // Update state locally by filtering out the deleted highlight
-//   setHighlights(highlights.filter(h => h.id !== id));
-
-//   try {
-//     // Send delete request to your backend API
-//     const response = await fetch(`http://localhost:8000/${id}`, {
-//       method: 'DELETE',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify({ id }),  // Send the ID of the highlight to delete
-//     });
-
-//     if (!response.ok) {
-//       throw new Error(`HTTP error! Status: ${response.status}`);
-//     }
-
-//     console.log('Comment and highlight deleted successfully!');
-//     alert('Comment and highlight deleted successfully!');
-
-//   } catch (error) {
-//     console.error('Error deleting comment and highlight:', error);
-//   }
-// };
+ 
 
 
   const getHighlightById = (id: string) => {
@@ -293,7 +267,6 @@ const deleteComment = async (id: string, highlight: ViewportHighlight<CommentedH
 
       {contextMenu && <ContextMenu {...contextMenu} />}
     </div>
-    // <Test/>
   );
 };
 
