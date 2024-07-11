@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { faThList } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faThList } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./style/Toolbar.css";
+
 interface ToolbarProps {
   setPdfScaleValue: (value: number) => void;
 }
@@ -34,14 +35,12 @@ const Toolbar = ({ setPdfScaleValue }: ToolbarProps) => {
     }
   };
 
- 
-
   return (
     <div className="Toolbar">
-      <div className="thumnailControls">
-        <button>
-           <FontAwesomeIcon icon={faThList} style={{ cursor: 'pointer' }}   />
-        </button>
+      <div className="thumbnailControls">
+        {/* <button >
+           <FontAwesomeIcon icon={faThList} style={{ cursor: 'pointer' }} />
+        </button> */}
       </div>
       <div className="ZoomControls">
         <button onClick={zoomOut}>-</button>

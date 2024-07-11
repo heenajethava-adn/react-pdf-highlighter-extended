@@ -1,11 +1,9 @@
-
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 let fileData = [];
 
-
 const PdfList = (props) => {
-  const {handleClick} = props;
+  const { handleClick } = props;
   const [fileList, setFileList] = useState([]);
 
   useEffect(() => {
@@ -41,16 +39,17 @@ const PdfList = (props) => {
               borderRadius: "0.75rem",
               width: "50%",
               margin: "auto",
-              marginBottom: "2rem"
+              marginBottom: "2rem",
+              marginTop: "2rem",
             }}
           >
-            <p >
+            <p>
               <span style={{ fontWeight: "600" }}>PDF Name:</span>{" "}
               <span>{file.file_name}</span>
             </p>
-            <p  >
+            <p>
               <span style={{ fontWeight: "600" }}>PDF Url:</span>{" "}
-              <span style={{wordWrap:'break-word'}}>{file.file_url}</span>
+              <span style={{ wordWrap: "break-word" }}>{file.file_url}</span>
             </p>
           </div>
         </Link>
@@ -60,4 +59,3 @@ const PdfList = (props) => {
 };
 
 export default PdfList;
-

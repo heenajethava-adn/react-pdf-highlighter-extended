@@ -28,6 +28,9 @@ import { disableTextSelection } from "../lib/disable-text-selection";
 import getBoundingRect from "../lib/get-bounding-rect";
 import getClientRects from "../lib/get-client-rects";
 import groupHighlightsByPage from "../lib/group-highlights-by-page";
+import { ThumbnailPlugin } from "@react-pdf-viewer/thumbnail";
+
+
 import {
   asElement,
   findOrCreateContainerLayer,
@@ -67,6 +70,7 @@ const findOrCreateHighlightLayer = (textLayer: HTMLElement) => {
  * @category Component Properties
  */
 export interface PdfHighlighterProps {
+    plugins?: ThumbnailPlugin[];
   /**
    * Array of all highlights to be organised and fed through to the child
    * highlight container.

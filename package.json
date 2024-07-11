@@ -51,8 +51,10 @@
     "lodash.debounce": "^4.0.8",
     "pdfjs-dist": "^2.16.105",
     "react-pdf-highlighter-extended": "^8.0.0",
+    "react-quill": "^2.0.0",
     "react-rnd": "^10.4.1",
-    "react-router-dom": "^6.24.0"
+    "react-router-dom": "^6.24.0",
+    "react-toastify": "^10.0.5"
   },
   "repository": {
     "type": "git",

@@ -27,9 +27,10 @@ const HighlightPopup = ({ highlight, editComment, deleteComment }: HighlightPopu
           <FontAwesomeIcon icon={faEdit} style={{ cursor: 'pointer' }} onClick={handleEdit}  />
           <FontAwesomeIcon icon={faTrashAlt} style={{ cursor: 'pointer', marginLeft: '1rem' }} onClick={handleDelete}  />
         </div>
-      <div>
+      {/* <div>
       {highlight.comment}
-      </div>
+      </div> */}
+      <div dangerouslySetInnerHTML={{ __html: highlight.comment }} />
        
     </div>
   ) : (

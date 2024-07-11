@@ -25,14 +25,14 @@ const ExpandableTip = ({ addHighlight }: ExpandableTipProps) => {
   useLayoutEffect(() => {
     updateTipPosition!();
   }, [compact]);
-
+  
+  console.log(compact)
   return (
     <div className="Tip">
       {compact ? (
         <button
           className="Tip__compact"
           onClick={() => {
-            
             setCompact(false);
             selectionRef.current = getCurrentSelection();
             selectionRef.current!.makeGhostHighlight();

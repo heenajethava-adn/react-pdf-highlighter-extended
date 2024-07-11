@@ -59,6 +59,7 @@
 }
 
 .sidebar__highlight {
+    position: relative;
     padding: 1rem;
     cursor: pointer;
     /* transition: background 140ms ease-in; */
@@ -66,11 +67,16 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     margin-top: 1rem;
     border-radius: 0.4rem;
+    background: #d3d3d380;
 }
+
 
 .sidebar__highlight:hover {
     background: #f8f9fa;
+    transition-duration: 1s;
 }
+
+ 
 
 a {
     color: #007bff;
@@ -164,4 +170,10 @@ blockquote:after {
     font-style: italic;
     font-weight: 500;
     color: rgb(17, 74, 109);
+}
+
+
+.comments-container img{
+    width: 100%;
+    height: auto;
 }

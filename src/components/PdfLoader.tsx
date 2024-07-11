@@ -1,5 +1,4 @@
 import React, { ReactNode, useEffect, useRef, useState } from "react";
-
 import type { PDFDocumentLoadingTask, PDFDocumentProxy } from "pdfjs-dist";
 import { GlobalWorkerOptions, getDocument } from "pdfjs-dist/legacy/build/pdf";
 import {
@@ -14,6 +13,8 @@ const DEFAULT_BEFORE_LOAD = (progress: OnProgressParameters) => (
     Loading {Math.floor((progress.loaded / progress.total) * 100)}%
   </div>
 );
+
+
 
 const DEFAULT_ERROR_MESSAGE = (error: Error) => (
   <div style={{ color: "black" }}>{error.message}</div>
