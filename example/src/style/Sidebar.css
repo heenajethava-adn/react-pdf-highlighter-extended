@@ -3,6 +3,7 @@
     color: #333333;
     background: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: block;
 }
 
 .highlight__image__container::-webkit-scrollbar,
@@ -176,4 +177,10 @@ blockquote:after {
 .comments-container img{
     width: 100%;
     height: auto;
+}
+
+@media only screen and (max-width: 768px) {
+    .sidebar{
+        display: none;
+    }
 }

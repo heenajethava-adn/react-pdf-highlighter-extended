@@ -26,9 +26,9 @@ const PdfList = (props) => {
 
   return (
     <>
-      {fileList.map((file, idx) => (
+      {fileList.map((filesId,authUser, idx) => (
         <Link
-          to={`/${file.id}`}
+          to={`http://localhost:8000/viewproof/?files_id=${filesId}&auth_user=${authUser}`}
           key={idx}
           style={{ textDecoration: "none", color: "#0e0e0e" }}
         >

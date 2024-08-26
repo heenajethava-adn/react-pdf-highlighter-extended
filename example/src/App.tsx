@@ -1,15 +1,17 @@
 import React from "react";
-import PdfList from "./PdfList";
 import ViewPdf from "./ViewPdf";
 import { BrowserRouter as Router,Routes,Route, } from "react-router-dom";
+import ActionButtons from "./ActionButtons";
 
 export default function App(){
   return (
         <Router>
-          <Routes>
-            <Route path="/" element={<PdfList/>} />
-            <Route path="/:id" element={<ViewPdf/>} />
-          </Routes>
+         <div>
+          <ActionButtons /> 
+        <Routes>
+          <Route path="viewproof" element={<ViewPdf />} />
+        </Routes>
+      </div>
         </Router>
   )
 };

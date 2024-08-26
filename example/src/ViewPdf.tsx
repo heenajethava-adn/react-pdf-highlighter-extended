@@ -5,6 +5,7 @@ import ExpandableTip from "./ExpandableTip";
 import HighlightContainer from "./HighlightContainer";
 import Sidebar from "./Sidebar";
 import Toolbar from "./Toolbar";
+
 import {
   GhostHighlight,
   PdfHighlighter,
@@ -31,7 +32,11 @@ const resetHash = () => {
   document.location.hash = "";
 };
 
+
 const ViewPdf = () => {
+  const queryParams = new URLSearchParams(location.search);
+  const filesId = queryParams.get('files_id') || '';
+  const authUser = queryParams.get('auth_user') || '';
   const { id } = useParams();
   const pdf_url = "";
   const [url, setUrl] = useState(pdf_url);
@@ -40,6 +45,7 @@ const ViewPdf = () => {
   const [highlights, setHighlights] = useState<Array<CommentedHighlight>>(
     TEST_HIGHLIGHTS[pdf_url] ?? [],
   );
+
 
   const [contextMenu, setContextMenu] = useState<ContextMenuProps | null>(null);
   const [pdfScaleValue, setPdfScaleValue] = useState<number | undefined>(
@@ -108,7 +114,7 @@ const ViewPdf = () => {
 
   const saveHighlights = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/${id}`, {
+      const response = await fetch(`http://localhost:8000/viewproof/?files_id=${filesId}&auth_user=${authUser}`,  {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -120,14 +126,11 @@ const ViewPdf = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      // console.log('Highlights saved successfully!');
       if (is_new) {
         toast.success("Highlights saved successfully!");
-        // alert('Highlights saved successfully!');
         setNew(false);
       } else if (is_del) {
         toast.error("Highlights deleted successfully!");
-        // alert('Highlights deleted successfully!')
         setDel(false);
       }
     } catch (error) {
@@ -138,7 +141,7 @@ const ViewPdf = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:8000/${id}`);
+        const response = await fetch(`http://localhost:8000/viewproof/?files_id=${filesId}&auth_user=${authUser}`);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -156,9 +159,9 @@ const ViewPdf = () => {
         toast.warn(
           "The PDF was not found. We are redirecting you to our homepage.",
         );
-        setTimeout(() => {
-          window.location.replace("/");
-        }, 2000);
+        // setTimeout(() => {
+        //   window.location.replace(`http://localhost:8000/viewproof/?files_id=${filesId}&auth_user=${authUser}`);
+        // }, 10000);
       }
     };
     fetchData();
@@ -230,9 +233,10 @@ const ViewPdf = () => {
 
   return (
     <div
-      className="App"
-      style={{ display: "flex", height: "850px", flexDirection: "row-reverse" }}
+    className="App"
+    style={{ display: "flex", height: "850px", flexDirection: "row-reverse" }}
     >
+   
       <ToastContainer position="top-right" />
       <Sidebar highlights={highlights} resetHighlights={resetHighlights} />
       <div

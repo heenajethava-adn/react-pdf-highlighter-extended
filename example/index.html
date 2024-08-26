@@ -1,45 +1,90 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Aclonica&display=swap" rel="stylesheet"> -->
-    <title>Menuetta - PDF Annotate POC</title>
-    <style>
-      /* width */
-      ::-webkit-scrollbar {
-        width: 10px;
-      }
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-      /* Track */
-      ::-webkit-scrollbar-track {
-        background: #f1f1f1; 
-      }
-      
-      /* Handle */
-      ::-webkit-scrollbar-thumb {
-        background: #888; 
-      }
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
 
-      /* Handle on hover */
-      ::-webkit-scrollbar-thumb:hover {
-        background: #555; 
-      }
+ 
 
-      #root{
-        font-family: system-ui;
-      }
-    </style>
-  </head>
-  <body style="margin: 0;">
-    <div class="" style="display: flex; justify-content:center; align-items:center; gap:0.5rem">
+.topnav  {
+  background-color: rgba(40, 40, 40, 0.8);
+  padding: .5rem 1rem;
+}
+
+
+
+
+.container{
+  width: 100%;
+  padding-right: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.imgnav{
+    padding-top: .3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+}
+ 
+ 
+.navbar-nav {
+    list-style: none;
+  }
+
+    .navbar-nav li{
+      position: relative;
+    }
+
+    .navbar-nav li a{
+    width: 35px;
+    text-align: center;
+    overflow: hidden;
+    height: 35px;
+    border-radius: 131px;
+    padding: 10px;
+    padding-left: 30px;
+    cursor: pointer;
+    background-color: #f46b22 !important;
+    }
+ 
+</style>
+</head>
+<body>
   
-    <h3 style="font-size: 1.5rem; font-family: 'Inter', sans-serif; color:rgb(17, 74, 109); margin-bottom: 0rem;">Menuetta - PDF Annotate POC</h3>
-    </div>
-      
-    <div id="root"></div>
-    <script type="module" src="./src/main.tsx"></script>
-  </body>
+  <div class="topnav" id="myTopnav">
+    <div class="container">
+      <nav class="imgnav">
+        <img class="active" src="./src/img/logo.png" alt="" height="50px">
+      </nav>
+ 
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a></a>
+        </li>
+      </ul>
+  </div>
+</div>
+
+  <div id="root"></div>
+ <script type="module" src="./src/main.tsx"></script>
+
+
+</body>
 </html>
